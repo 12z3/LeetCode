@@ -5,7 +5,7 @@ import java.util.List;
 
 public class leetCodeSubStrings {
 
-    //TODO: Time Limit Exceeded
+    //TODO: Time Limit Exceeded - Мина на косъм.
     // https://leetcode.com/problems/longest-palindromic-substring/description/
 
     public static void main(String[] args) {
@@ -57,11 +57,9 @@ public class leetCodeSubStrings {
 
         if (s.length() == 1) return s;
 
-        StringBuilder tmp = new StringBuilder();
-        StringBuilder tmp1 = new StringBuilder(s);
-        for (int i = s.length() - 1; i >= 0; i--) {
-            tmp.append(tmp1.charAt(i));
-        }
+        StringBuilder tmp = new StringBuilder(s);
+        StringBuilder tmp1 = new StringBuilder(tmp).reverse();
+
         if (tmp1.toString().equalsIgnoreCase(tmp.toString())) return tmp.toString();
 
         int indexX = 0, p = 0;                            // xaabacxcabaaxcabaax
@@ -73,12 +71,9 @@ public class leetCodeSubStrings {
                 if (s.indexOf(y, idxFrom) != -1) {         // За всяка една една буква обхожда стринга за съвпадение.
                     int idx = s.indexOf(y, idxFrom);
                     stbR = new StringBuilder(s.substring(p, idx + 1));
-                    stbL = new StringBuilder();
+                    stbL = new StringBuilder(stbR).reverse();
                     idxFrom = idx + 1;
 
-                    for (int j = stbR.length() - 1; j >= 0; j--) {
-                        stbL.append(stbR.charAt(j));
-                    }
                     if (stbR.toString().equalsIgnoreCase(stbL.toString())) {
                         stbAll.add(stbR);
                         isMatch = true;
