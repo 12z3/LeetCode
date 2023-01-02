@@ -65,7 +65,7 @@ public class leetCodeSubStrings {
         if (tmp1.toString().equalsIgnoreCase(tmp.toString())) return tmp.toString();
 
         int indexX = 0, p = 0;
-        while (indexX < s.length()){
+        while (indexX < s.length()) {                               // xaabacxcabaaxcabaax
             idxFrom = indexX;
             for (int i = 0; i < s.length(); i++) {
                 char y = s.charAt(p);
