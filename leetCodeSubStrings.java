@@ -5,8 +5,11 @@ import java.util.List;
 
 public class leetCodeSubStrings {
 
-    //TODO: Time Limit Exceeded - Мина на косъм.
+    //TODO: Time Limit Exceeded - Мина на косъм                                .
     // https://leetcode.com/problems/longest-palindromic-substring/description/
+
+    // TODO: Manacher’s Algorithm – Linear Time Longest Palindromic Substring
+    // https://www.geeksforgeeks.org/manachers-algorithm-linear-time-longest-palindromic-substring-part-1/
 
     public static void main(String[] args) {
         String x4 = "bappabad";
