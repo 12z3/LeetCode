@@ -40,12 +40,18 @@ public class leetCodeSubStrings {
         System.out.println(palindromsLeetCode(x));
 
 
-        /**
-         *  Взима 1-та буква
-         *  Проверява дали indexOf("нея") != -1
-         *  Ако "Да" -> for(позицията на буквата до резултата от indexOf("нея") + 1)
-         *  Генерира се StringBuilder, който проверяваме, че е палиндромен.
-         *
+        /*
+         *    xaabacxcabaaxcabaax
+         * 1. xaabacx -> взима обърнатия на него стринг и проверява дали е палиндромен.
+         * 2. xaabacxcabaax -> същото.
+         * 2. xaabacxcabaaxcabaax -> същото
+
+         * 1. aa -> същото
+         * 2. aaba -> същото.
+         * 3. aabacxca -> същото
+         * .
+         * .
+         * .
          */
     }
 
