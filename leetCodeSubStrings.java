@@ -66,10 +66,10 @@ public class leetCodeSubStrings {
 
         if (s.length() == 1) return s;
 
-        StringBuilder tmp = new StringBuilder(s);
-        StringBuilder tmp1 = new StringBuilder(tmp).reverse();
+        StringBuilder tmpA = new StringBuilder(s);
+        StringBuilder tmpB = new StringBuilder(tmpA).reverse();
 
-        if (tmp1.toString().equalsIgnoreCase(tmp.toString())) return tmp.toString();
+        if (tmpB.toString().equalsIgnoreCase(tmpA.toString())) return tmpA.toString();
 
         int indexX = 0, p = 0;                            // xaabacxcabaaxcabaax
         while (indexX < s.length()) {                     // Обхожда по всяка една буква на стринга.
