@@ -22,9 +22,47 @@ public class RemoveLetterToEqualizeFrequency {
         //String word = "abbcc"; //<-
 
         //System.out.println(removeLetterToEqualizeFrequency(word));
-        System.out.println(removeLetterToEqualizeFrequencyA(word));
+        //System.out.println(removeLetterToEqualizeFrequencyA(word));
+        System.out.println(removeLetterToEqualizeFrequencyD(word));
 
     }
+
+    private static boolean removeLetterToEqualizeFrequencyD(String word) {
+        boolean result = true;
+        int max = Integer.MIN_VALUE, count = 0, sum = 0, countDiff = 0;
+        Map<Character, Integer> freqMap = new HashMap<>();
+
+        for (int i = 0; i < word.length(); i++) {
+            char elA = word.charAt(i);
+            freqMap.put(elA, freqMap.getOrDefault(elA, 0) + 1);
+        }
+
+        List<Character> letters = new ArrayList<>(freqMap.keySet());
+        for (int i = 0; i < letters.size(); i++) {
+            char elA = letters.get(i);
+            int freqA = freqMap.get(elA);
+
+            if (freqA == max) {
+                count++;
+            } else if (freqA > max) {
+                max = freqA;
+                count = 1;
+            }
+            sum += freqA;
+        }
+
+        if (count == 1) {
+            result = false;
+        } else if (count == freqMap.size()) {
+            result = true;
+        } else if (countDiff > 1) {
+            result = false;
+        } else {
+        }
+
+        return result;
+    }
+
 
     private static boolean removeLetterToEqualizeFrequencyA(String word) {
         boolean result = true;
@@ -47,8 +85,8 @@ public class RemoveLetterToEqualizeFrequency {
                 letters.add(tmp);
             } else continue;
         }
-        System.out.println(letters);
         System.out.println(word);
+        System.out.println(letters);
         for (StringBuilder el : letters) System.out.print(el.length() + " ");
 
 
