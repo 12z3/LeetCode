@@ -14,6 +14,7 @@ public class LongestIncreasingSubsequence {
         int[] arr1 = {0, 1, 0, 3, 2, 3};
         int[] arr3 = {-2, -1};
         int[] arr = {4, 10, 4, 3, 8, 9};                                  // 9 > 4, 4 < 10 но 10 > 4
+        //    tmp = {1, 2,  1, 1, 2, 3}
         int[] arr2 = {7, 7, 7, 7, 7, 7};
         int[] arr4 = {10, 9, 2, 5, 3, 4};
 
@@ -23,7 +24,7 @@ public class LongestIncreasingSubsequence {
     private static int lengthOfLIS(int[] nums) {
         int[] tmp = new int[nums.length];
         Arrays.fill(tmp, 1);
-        int result = 1, elC = 1, lastEl = 0;
+        int result = 1, elC;
 
         for (int i = 1; i < nums.length; i++) {
             for (int j = 0; j < i; j++) {
