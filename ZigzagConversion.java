@@ -15,13 +15,14 @@ public class ZigzagConversion extends Methods {
 
     public static void main(String[] args) {
 
-        String line1 = "PAYPALISHIRING";
-        String line = "fbmafwsahcpwthjqmajrtlaykcwidwoixcifadfjfwgafrquscllpmlaoiktgacgdmlfpsrwozxvqppir";
-        String line2 = "AB"; // 1
-        System.out.println(line);
-        System.out.println(convert(line, 76));
+        String line = "PAYPALISHIRING"; // 3, 4
+        String line2 = "fbmafwsahcpwthjqmajrtlaykcwidwoixcifadfjfwgafrquscllpmlaoiktgacgdmlfpsrwozxvqppir"; // 76
+        String line3 = "ABCD"; // 1
 
-        // compareWords(convert(line,4),"PINALSIGYAHRPI");
+        System.out.println(line);
+        //System.out.println(convert(line, 4));
+        System.out.println(convertA(line, 4));
+       // compareWords(convert(line, 4), "PINALSIGYAHRPI");
     }
 
     public static String convert(String s, int numRows) {
@@ -29,36 +30,28 @@ public class ZigzagConversion extends Methods {
         int r = 0, c = 0, i = 0, count = 0, col = 0;
         if (numRows == 1) return s;
 
-        if (s.length() == 1) {
-            col = 1;
-        } else {
-            col = (s.length() + numRows);
-        }
+        if (s.length() == 1) col = 1;
+        else col = (s.length() * numRows);
 
-        boolean isBreak = false;
         char[][] arr = new char[numRows][col];
         StringBuilder tmp = new StringBuilder();
 
-        while (count < s.length()) {
+       LOOP: while (count < s.length()) {
             while (r <= arr.length - 1) {
                 el = s.charAt(i);
                 arr[r++][c] = el;
                 i++;
                 count++;
-                if (count > s.length() - 1) {
-                    isBreak = true;
-                    break;
-                }
+                if (count > s.length() - 1) break LOOP;
+
             }
             r--;
             while (r > 0) {
-                if (isBreak) break;
-                //if (r == numRows) r -= numRows - 1;
                 el = s.charAt(i);
                 arr[--r][++c] = el;
                 i++;
                 count++;
-                if (count > s.length() - 1) break;
+                if (count > s.length() - 1) break LOOP;
 
             }
             r++;
@@ -77,10 +70,81 @@ public class ZigzagConversion extends Methods {
 
         return tmp.toString();
     }
+
+    public static String convertA(String s, int numRows) {
+        if (numRows == 1) {
+            return s;
+        }
+
+        int len = s.length();
+        int cycleLen = 2 * numRows - 2;
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j + i < len; j += cycleLen) {
+                sb.append(s.charAt(j + i));
+                if (i != 0 && i != numRows - 1 && j + cycleLen - i < len) {
+                    sb.append(s.charAt(j + cycleLen - i));
+                }
+            }
+        }
+
+        return sb.toString();
+    }
 }
 
 
-//---------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------
+
+//    public static String convert(String s, int numRows) {
+//        char el = '-';
+//        int r = 0, c = 0, i = 0, count = 0, col = 0;
+//        if (numRows == 1) return s;
+//
+//        if (s.length() == 1) col = 1;
+//        else col = (s.length() * 4);
+//
+//        char[][] arr = new char[numRows][col];
+//        StringBuilder tmp = new StringBuilder();
+//
+//        LOOP: while (count < s.length()) {
+//            while (r <= arr.length - 1) {
+//                el = s.charAt(i);
+//                arr[r++][c] = el;
+//                i++;
+//                count++;
+//                if (count > s.length() - 1) break LOOP;
+//
+//            }
+//            r--;
+//            while (r > 0) {
+//                el = s.charAt(i);
+//                arr[--r][++c] = el;
+//                i++;
+//                count++;
+//                if (count > s.length() - 1) break LOOP;
+//
+//            }
+//            r++;
+//        }
+//
+//        for (int rowS = 0; rowS < arr.length; rowS++) {
+//            for (int colS = 0; colS < arr[rowS].length; colS++) {
+//                if (arr[rowS][colS] == 0) {
+//                    arr[rowS][colS] = ' ';
+//                }
+//                if (arr[rowS][colS] != ' ') tmp.append(arr[rowS][colS]);
+//                System.out.print(arr[rowS][colS]);
+//            }
+//            System.out.println();
+//        }
+//
+//        return tmp.toString();
+//    }
+//}
+
+// ---------------------------------------------------------------------------------
+
 
 //    public static String convert(String s, int numRows) {
 //        char el = '-';
